@@ -35,10 +35,10 @@
 //
 
 export default {
-  auth: {
-    login: {
-      username: 'supervisor',
-      password: '100TickTock'
-    }
-  }
+//  auth: {
+//   login: {
+//      username: 'demo',
+//      password: 'demo'
+//    }
+//  }
 };
