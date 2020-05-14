@@ -38,6 +38,8 @@
 // https://manual.os-js.org/v3/resource/official/
 //
 
+const pamAuth = require('@osjs/pam-auth');
+
 const {
   Core,
   CoreServiceProvider,
@@ -53,7 +55,12 @@ const osjs = new Core(config, {});
 osjs.register(CoreServiceProvider, {before: true});
 osjs.register(PackageServiceProvider);
 osjs.register(VFSServiceProvider);
-osjs.register(AuthServiceProvider);
+// osjs.register(AuthServiceProvider);
+osjs.register(AuthServiceProvider, {
+  args: {
+    adapter: pamAuth
+  }
+});
 osjs.register(SettingsServiceProvider);
 
 const shutdown = signal => (error) => {
