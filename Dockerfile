@@ -31,9 +31,9 @@
 # THIS IS ONLY INTENDED FOR DEVELOPMENT USAGE
 
 FROM node:10
-RUN npm install -g nodemon
 WORKDIR /usr/src/osjs
 COPY . .
-EXPOSE 8000
-COPY entrypoint.sh .
-CMD ./entrypoint.sh
+RUN npm install
+RUN npm run package:discover
+RUN NODE_ENV=production npm run build
+CMD npm run serve
