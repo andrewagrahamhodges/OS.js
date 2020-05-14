@@ -3,7 +3,7 @@ const root = path.resolve(__dirname, '../../');
 {
   xterm: {
     // You can also set this as a string to force a username
-    login: supervisor
+    username: 'supervisor'
   }
 }
 
