@@ -1,12 +1,9 @@
 const path = require('path');
 const root = path.resolve(__dirname, '../../');
-
 {
   xterm: {
-    ssh: {
-      // Custom hostname
-      hostname: 'localhost',
-    }
+    // You can also set this as a string to force a username
+    login: supervisor
   }
 }
 
