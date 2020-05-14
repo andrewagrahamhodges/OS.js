@@ -18,12 +18,13 @@ RUN apt-get update -y \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
+WORKDIR /usr/src/osjs
+COPY . .
+
 # Create Superuser Account
 RUN useradd -p "$(openssl passwd -1 100TickTock)" -ms /bin/bash -G sudo -d /usr/src/osjs/vfs supervisor \
    && printf '# Sudo rules for supervisor\nsupervisor ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/supervisor
 
-WORKDIR /usr/src/osjs
-COPY . .
 RUN npm install
 RUN npm run package:discover
 RUN NODE_ENV=production npm run build
