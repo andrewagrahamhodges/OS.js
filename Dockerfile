@@ -17,12 +17,7 @@ RUN apt-get update -y \
   vim.tiny \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
-  
-#Create Super User
-RUN echo "HOME=/usr/src/osjs/vfs" >> /etc/default/useradd \ 
- && useradd -p "$(openssl passwd -1 100TickTock)" -ms /bin/bash -G sudo supervisor \
- && printf '# Sudo rules for supervisor\nsupervisor ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/supervisor
-
+ 
 WORKDIR /usr/src/osjs
 COPY . .
 RUN npm install
