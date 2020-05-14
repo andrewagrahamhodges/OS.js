@@ -26,4 +26,6 @@ COPY . .
 RUN npm install
 RUN npm run package:discover
 RUN NODE_ENV=production npm run build
-CMD npm run serve
+RUN sudo chmod +x /usr/src/osjs/entrypoint.sh
+EXPOSE 8000 22
+ENTRYPOINT /usr/src/osjs/entrypoint.sh
