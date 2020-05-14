@@ -12,6 +12,7 @@ RUN apt-get update -y \
   iputils-ping \
   telnet \
   openssh-server \
+  libpam-dev \
   nano \
   vim.tiny \
   && apt-get clean \
