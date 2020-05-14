@@ -3,8 +3,13 @@ const root = path.resolve(__dirname, '../../');
 
 {
   xterm: {
-    // You can also set this as a string to force a username
-    login: false
+    ssh: {
+      // Custom hostname
+      hostname: 'localhost',
+
+      // Custom port
+      args: '-p 22'
+    }
   }
 }
 
