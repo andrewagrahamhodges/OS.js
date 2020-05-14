@@ -7,5 +7,5 @@ module.exports = {
   public: path.resolve(root, 'dist')
   vfs: {
     root: '/home'
-  },
+  }
 };
