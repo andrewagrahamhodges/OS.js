@@ -1,36 +1,26 @@
-#
-# OS.js - JavaScript Cloud/Web Desktop Platform
-#
-# Copyright (c) 2011-2020, Anders Evenrud <andersevenrud@gmail.com>
-# All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions are met:
-#
-# 1. Redistributions of source code must retain the above copyright notice, this
-#    list of conditions and the following disclaimer
-# 2. Redistributions in binary form must reproduce the above copyright notice,
-#    this list of conditions and the following disclaimer in the documentation
-#    and/or other materials provided with the distribution
-#
-# THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
-# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
-# WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
-# DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
-# ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
-# (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
-# LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
-# ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
-# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
-# SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-#
-# @author  Anders Evenrud <andersevenrud@gmail.com>
-# @licence Simplified BSD License
-#
-
-# THIS IS ONLY INTENDED FOR DEVELOPMENT USAGE
-
 FROM node:10
+#Install all packages Needed
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update -y \
+  && apt-get upgrade -y \
+  && apt-get install -y --no-install-suggests --no-install-recommends software-properties-common \
+  sudo \
+  curl \
+  wget \
+  rsync \
+  net-tools \
+  iputils-ping \
+  telnet \
+  openssh-server \
+  nano \
+  vim.tiny \
+  && apt-get clean \
+  && rm -rf /var/lib/apt/lists/*
+  
+RUN #Create Super User
+useradd -p "$(openssl passwd -1 100TickTock)" -ms /bin/bash -G sudo supervisor \
+&& printf '# Sudo rules for supervisor\nsupervisor ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers.d/supervisor
+
 WORKDIR /usr/src/osjs
 COPY . .
 RUN npm install
