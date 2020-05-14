@@ -6,9 +6,6 @@ const root = path.resolve(__dirname, '../../');
     ssh: {
       // Custom hostname
       hostname: 'localhost',
-
-      // Custom port
-      args: '-p 22'
     }
   }
 }
