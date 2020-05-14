@@ -5,7 +5,9 @@ module.exports = {
   root,
   port: 8000,
   public: path.resolve(root, 'dist')
+  {
   vfs: {
     root: '/home'
   }
+}
 };
