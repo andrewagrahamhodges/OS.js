@@ -50,6 +50,7 @@
     "@osjs/textpad-application": "^1.2.7",
     "@osjs/xterm-application": "^1.2.2",
     "@osjs/pam-auth": "^1.1.1",
+    "@andrewagrahamhodges/osjs-office-nextoncloud": "^1.1.3",
     "hyperapp": "^1.2.10",
     "typeface-roboto": "0.0.75"
   },
