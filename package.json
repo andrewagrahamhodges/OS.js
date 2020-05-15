@@ -50,7 +50,7 @@
     "@osjs/textpad-application": "^1.2.7",
     "@osjs/xterm-application": "^1.2.2",
     "@osjs/pam-auth": "^1.1.1",
-    "@osjs/osjs-xpra-application": "^1.0.9",
+    "@osjs/xpra-application": "^1.0.9",
     "hyperapp": "^1.2.10",
     "typeface-roboto": "0.0.75"
   },
