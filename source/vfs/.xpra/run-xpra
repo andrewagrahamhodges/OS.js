@@ -1,0 +1,29 @@
+#!/bin/sh
+TERM="xterm-color"; export TERM
+SHELL="/bin/bash"; export SHELL
+SHLVL="1"; export SHLVL
+SSH_TTY="/dev/pts/1"; export SSH_TTY
+SSH_CLIENT="127.0.0.1\ 34842\ 22"; export SSH_CLIENT
+PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games":"$PATH"; export PATH
+PWD="/usr/src/osjs/vfs"; export PWD
+LOGNAME="supervisor"; export LOGNAME
+USER="supervisor"; export USER
+MAIL="/var/mail/supervisor"; export MAIL
+HOME="/usr/src/osjs/vfs"; export HOME
+SSH_CONNECTION="127.0.0.1\ 34842\ 127.0.0.1\ 22"; export SSH_CONNECTION
+_="/usr/bin/xpra"; export _
+cd "/usr/src/osjs/vfs"
+_XPRA_PYTHON="/usr/bin/python"
+_XPRA_SCRIPT="/usr/bin/xpra"
+
+if which "$_XPRA_PYTHON" > /dev/null && [ -e "$_XPRA_SCRIPT" ]; then
+    # Happypath:
+    exec "$_XPRA_PYTHON" "$_XPRA_SCRIPT" "$@"
+else
+    cat >&2 <<END
+    Could not find one or both of '$_XPRA_PYTHON' and '$_XPRA_SCRIPT'
+    Perhaps your environment has changed since the xpra server was started?
+    I'll just try executing 'xpra' with current PATH, and hope...
+END
+    exec xpra "$@"
+fi
